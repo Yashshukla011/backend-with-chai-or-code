@@ -7,9 +7,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-console.log("Cloudinary Cloud:", process.env.CLOUDINARY_CLOUD_NAME);
-console.log("Cloudinary Key:", process.env.CLOUDINARY_API_KEY ? "LOADED" : "MISSING");
-console.log("Cloudinary Secret:", process.env.CLOUDINARY_API_SECRET ? "LOADED" : "MISSING");
+// console.log("Cloudinary Clou d:", process.env.CLOUDINARY_CLOUD_NAME);
+// console.log("Cloudinary Key:", process.env.CLOUDINARY_API_KEY ? "LOADED" : "MISSING");
+// console.log("Cloudinary Secret:", process.env.CLOUDINARY_API_SECRET ? "LOADED" : "MISSING");
 
 const uploadOnCloudinary = async (localFilePath) => {
   try {
@@ -23,8 +23,7 @@ const uploadOnCloudinary = async (localFilePath) => {
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
-
-    console.log("Cloudinary response:", response.secure_url);
+     fs.unlinkSync(localFilePath);
 
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
